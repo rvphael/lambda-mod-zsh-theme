@@ -27,11 +27,11 @@ function git_prompt_status() {
     local status_info=$(git status --porcelain 2> /dev/null)
     local symbols=""
 
-    [[ -n $(echo "$status_info" | grep '^ M') ]] && symbols+="${ZSH_THEME_GIT_PROMPT_MODIFIED}"
-    [[ -n $(echo "$status_info" | grep '^A ') ]] && symbols+="${ZSH_THEME_GIT_PROMPT_ADDED}"
-    [[ -n $(echo "$status_info" | grep '^ D') ]] && symbols+="${ZSH_THEME_GIT_PROMPT_DELETED}"
+    [[ -n $(echo "$status_info" | grep '^UU ') ]] && symbols+="${ZSH_THEME_GIT_PROMPT_UNMERGED}"
     [[ -n $(echo "$status_info" | grep '^R ') ]] && symbols+="${ZSH_THEME_GIT_PROMPT_RENAMED}"
-    [[ -n $(echo "$status_info" | grep '^U ') ]] && symbols+="${ZSH_THEME_GIT_PROMPT_UNMERGED}"
+    [[ -n $(echo "$status_info" | grep '^ D') ]] && symbols+="${ZSH_THEME_GIT_PROMPT_DELETED}"
+    [[ -n $(echo "$status_info" | grep '^A ') ]] && symbols+="${ZSH_THEME_GIT_PROMPT_ADDED}"
+    [[ -n $(echo "$status_info" | grep '^ M') ]] && symbols+="${ZSH_THEME_GIT_PROMPT_MODIFIED}"
     [[ -n $(echo "$status_info" | grep '^\?\?') ]] && symbols+="${ZSH_THEME_GIT_PROMPT_UNTRACKED}"
     [[ -n $(git stash list) ]] && symbols+="${ZSH_THEME_GIT_PROMPT_STASHED}"
 
